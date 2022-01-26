@@ -1,5 +1,8 @@
+import React from 'react';
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
 import appConfig from '../config.json';
+import { useState } from 'react'
+import { useRouter } from 'next/router';
 
 function GlobalStyle() {
   return (
@@ -46,25 +49,13 @@ function Title(props) {
   );
 }
 
-/*function HomePage() {
-  return (
-    <div>
-      <GlobalStyle />
-      <Title tag="h1">Boas Vindas de Volta!</Title>
-      <h2>Discord - Alura Matrix</h2>
-    </div>
-  )
-}
-
-export default HomePage
-*/
-
 export default function PaginaInicial() {
-  const username = 'guilhermecardoso93';
+  //const username = 'guilhermecardoso93';
+  const [username, setUsername] = React.useState('guilhermecardoso93')
+  const roteamento = useRouter();
 
   return (
     <>
-      <GlobalStyle />
       <Box
         styleSheet={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -90,6 +81,11 @@ export default function PaginaInicial() {
           {/* Formulário */}
           <Box
             as="form"
+            onSubmit={(infosDoEvento) => {
+              infosDoEvento.preventDefault()
+              roteamento.push('/chat')
+
+            }}
             styleSheet={{
               display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
@@ -99,9 +95,13 @@ export default function PaginaInicial() {
             <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[999] }}>
               Alura React - Guilherme Cardoso
             </Text>
-
             <TextField
               fullWidth
+              value={username}
+              onChange={function (event) {
+                const valor = event.target.value
+                setUsername(valor)
+              }}
               textFieldColors={{
                 neutral: {
                   textColor: appConfig.theme.colors.neutrals[200],
@@ -109,6 +109,7 @@ export default function PaginaInicial() {
                   mainColorHighlight: appConfig.theme.colors.primary[501],
                   backgroundColor: appConfig.theme.colors.neutrals[800],
                 },
+
               }}
             />
             <Button
@@ -116,7 +117,7 @@ export default function PaginaInicial() {
               label='Entrar'
               fullWidth
               buttonColors={{
-                textWeight:500,
+                textWeight: 500,
                 contrastColor: appConfig.theme.colors.neutrals["999"],
                 mainColor: appConfig.theme.colors.primary[502],
                 mainColorLight: appConfig.theme.colors.primary[502],
@@ -148,8 +149,7 @@ export default function PaginaInicial() {
                 borderRadius: '50%',
                 marginBottom: '16px',
               }}
-              src={`https://github.com/guilhermecardoso93.png`}
-            />
+              src={`https://github.com/${username}.png`} />
             <Text
               variant="body4"
               styleSheet={{
