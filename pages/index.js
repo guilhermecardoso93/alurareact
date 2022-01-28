@@ -58,7 +58,7 @@ export default function PaginaInicial() {
             as="form"
             onSubmit={(infosDoEvento) => {
               infosDoEvento.preventDefault()
-              roteamento.push('/chat')
+              roteamento.push(`/chat?username=${username}`)
 
             }}
             styleSheet={{
