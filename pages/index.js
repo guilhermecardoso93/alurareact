@@ -4,34 +4,6 @@ import appConfig from '../config.json';
 import { useState } from 'react'
 import { useRouter } from 'next/router';
 
-function GlobalStyle() {
-  return (
-    <style global jsx>{`
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        list-style: none;
-      }
-      body {
-        font-family: 'Open Sans', sans-serif;
-      }
-      /* App fit Height */ 
-      html, body, #__next {
-        min-height: 100vh;
-        display: flex;
-        flex: 1;
-      }
-      #__next {
-        flex: 1;
-      }
-      #__next > * {
-        flex: 1;
-      }
-      /* ./App fit Height */ 
-    `}</style>
-  );
-}
 
 function Title(props) {
   const Tag = props.tag || 'h1';
@@ -56,7 +28,7 @@ export default function PaginaInicial() {
 
   return (
     <>
-      <Box
+      <Box className='kenburns-top'
         styleSheet={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           backgroundImage: 'url(https://images3.alphacoders.com/104/thumb-1920-1042294.jpg)',
@@ -64,7 +36,9 @@ export default function PaginaInicial() {
         }}
       >
         <Box
+          className='bg-pan-right'
           styleSheet={{
+
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -80,6 +54,7 @@ export default function PaginaInicial() {
         >
           {/* Formulário */}
           <Box
+
             as="form"
             onSubmit={(infosDoEvento) => {
               infosDoEvento.preventDefault()
@@ -91,9 +66,9 @@ export default function PaginaInicial() {
               width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
             }}
           >
-            <Title tag="h1" >Boas vindas de volta!</Title>
+            <Title tag="h1" className="animate__animated animate__rubberBand">Boas vindas de volta!</Title>
             <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[999] }}>
-              Alura React - Guilherme Cardoso
+              <span > Alura React - Guilherme Cardoso </span>
             </Text>
             <TextField
               fullWidth

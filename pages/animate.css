@@ -1,0 +1,30 @@
+.kenburns-top {
+	-animation: kenburns-top 10s linear infinite alternate backwards
+}
+@keyframes kenburns-top {
+        0% {
+          transform: scale(1) translateY(0);
+          transform-origin: 50% 16%;
+        }
+        100% {
+          transform: scale(1.25) translateY(-15px);
+          transform-origin: top;
+        }
+      }
+
+.bg-pan-right {
+	animation: color-change-3x 4s linear infinite alternate both;
+}
+
+@keyframes color-change-3x {
+  0% {
+    background: #2e3131;
+  }
+  50% {
+    background: #2c2a2c;
+  }
+  100% {
+    background: #1d1c1c;
+  }
+}
+      
